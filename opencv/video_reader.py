@@ -1,6 +1,6 @@
 import cv2
 
-video= cv2.VideoCapture(0)
+video= cv2.VideoCapture(0)   # or path in brackets
 
 while True:
     success , frame =video.read()
