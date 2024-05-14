@@ -1,0 +1,31 @@
+#optical character detection/recognition
+#to detect characters from image/video
+
+import cv2
+import pytesseract
+from pytesseract import Output
+
+img= cv2.imread('/home/user/Music/bd-sept/python-tutorials/OCR/antonio-gramsci-quote-lbx7j2y.jpg')
+text = pytesseract.image_to_string(img)
+data = pytesseract.image_to_data(img,output_type=Output.DICT)
+
+#print(data.keys())
+
+print(data['text'])
+print(data['conf'])
+
+#to put rctangles in the recognised words
+
+n_boxes = len(data['text'])
+print(n_boxes)
+
+
+for i in range(n_boxes):
+    if data['conf'][i]>80:  #to avoid rectangle on empty spaces
+        x,y,w,h=data['left'][i],data['top'][i],data['width'][i],data['height'][i]
+        print(x,y,w,h)
+        cv2.rectangle(img,(x,y),(x+w,y+h),color=(0,255,0),thickness=5)
+
+cv2.imshow('ocr',img)
+cv2.waitKey(5000)
+cv2.destroyAllWindows()

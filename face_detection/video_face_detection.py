@@ -1,5 +1,5 @@
 import cv2
-video=cv2.VideoCapture(0)
+video=cv2.VideoCapture('opencv/VID-20240509-WA0000.mp4')
 
 face_cascade= cv2.CascadeClassifier('face_detection/haarcascade_frontalface_default.xml')
 eye_cascade= cv2.CascadeClassifier('face_detection/haarcascade_eye.xml')
